@@ -33,3 +33,5 @@ group :test do
   gem 'json_spec'
   gem "selenium-webdriver"
 end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
