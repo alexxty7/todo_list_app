@@ -4,6 +4,7 @@ RSpec.describe Api::V1::TaskListsController, type: :controller do
   describe 'GET #index' do
     let!(:task_lists) { create_list(:task_list, 2) }
     let(:task_list) { task_lists.first }
+    let!(:task) { create(:task, task_list: task_list) }
 
     before { get :index, format: :json }
 
@@ -18,6 +19,18 @@ RSpec.describe Api::V1::TaskListsController, type: :controller do
     %w(id title).each do |attr|
       it "task_list object contains #{attr}" do
         expect(response.body).to be_json_eql(task_list.send(attr.to_sym).to_json).at_path("task_lists/0/#{attr}")
+      end
+    end
+
+    context 'tasks' do
+      it 'included in task_list object' do
+        expect(response.body).to have_json_size(1).at_path('task_lists/0/tasks')
+      end
+      
+      %w(id description completed position deadline).each do |attr|
+        it "contains #{attr}" do
+          expect(response.body).to be_json_eql(task.send(attr.to_sym).to_json).at_path("task_lists/0/tasks/0/#{attr}")
+        end
       end
     end
   end

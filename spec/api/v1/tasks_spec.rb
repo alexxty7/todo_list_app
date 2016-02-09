@@ -5,6 +5,7 @@ RSpec.describe Api::V1::TasksController, type: :controller do
 
   describe 'GET #show' do
     let(:task) { create(:task, task_list: task_list) }
+    let!(:comment) { create(:comment, task: task) }
 
     before {get :show, id: task, format: :json }
 
@@ -15,6 +16,18 @@ RSpec.describe Api::V1::TasksController, type: :controller do
     %w(id description completed position deadline).each do |attr|
       it "contains #{attr}" do
         expect(response.body).to be_json_eql(task.send(attr.to_sym).to_json).at_path("task/#{attr}")
+      end
+    end
+
+    context 'comments' do
+      it 'included in task object' do
+        expect(response.body).to have_json_size(1).at_path('task/comments')
+      end
+      
+      %w(id body file_attachment).each do |attr|
+        it "contains #{attr}" do
+          expect(response.body).to be_json_eql(comment.send(attr.to_sym).to_json).at_path("task/comments/0/#{attr}")
+        end
       end
     end
 
@@ -98,8 +111,19 @@ RSpec.describe Api::V1::TasksController, type: :controller do
     end
   end
 
-  describe 'GET #sort' do
+  describe 'PATCH #sort' do
+    let(:task) { create(:task, task_list: task_list) }
 
+    it 'set task position' do
+      patch :sort, id: task, position: 2, format: :json
+      task.reload
+      expect(task.position).to_not eq(1)
+    end
+
+    it "should return 204 OK" do
+      patch :sort, id: task, position: 2, format: :json
+      expect(response).to be_success
+    end
   end
 
 end
