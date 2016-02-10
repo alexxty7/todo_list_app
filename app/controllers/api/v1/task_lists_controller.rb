@@ -2,11 +2,11 @@ class Api::V1::TaskListsController < ApplicationController
   before_action :load_task_list, only: [:destroy, :update]
 
   def index
-    respond_with TaskList.all
+    respond_with current_user.task_lists
   end
 
   def create
-    @task_list = TaskList.create(task_list_params)
+    @task_list = current_user.task_lists.create(task_list_params)
     respond_with :api, :v1, @task_list
   end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::TasksController, type: :controller do
   let!(:task_list) { create(:task_list) }
-
+  login_user
   describe 'GET #show' do
     let(:task) { create(:task, task_list: task_list) }
     let!(:comment) { create(:comment, task: task) }

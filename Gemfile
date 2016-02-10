@@ -14,6 +14,10 @@ gem 'responders'
 gem 'active_model_serializers'
 gem 'acts_as_list'
 gem 'carrierwave'
+gem 'devise_token_auth'
+gem 'omniauth', '~> 1.0'
+gem 'omniauth-facebook'
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   gem 'byebug'

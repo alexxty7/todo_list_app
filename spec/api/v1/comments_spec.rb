@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Api::V1::CommentsController, type: :controller do
   let(:task_list) { create(:task_list) }
   let!(:task) { create(:task, task_list: task_list) }
-
+  login_user
+  
   describe 'POST #create' do
 
      context 'with valid attributes' do

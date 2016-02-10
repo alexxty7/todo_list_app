@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::TaskListsController, type: :controller do
+  login_user
   describe 'GET #index' do
-    let!(:task_lists) { create_list(:task_list, 2) }
+    let!(:task_lists) { create_list(:task_list, 2, user: @user) }
     let(:task_list) { task_lists.first }
     let!(:task) { create(:task, task_list: task_list) }
 
