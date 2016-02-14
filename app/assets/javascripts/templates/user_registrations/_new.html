@@ -1,0 +1,52 @@
+<div class="alert alert-danger" role="alert" ng-show="error">
+  {{error}}
+</div>
+<form name="regForm" class="form-auth" ng-submit="regForm.$valid && handleRegBtnClick()" role="form" ng-init="registration = {}" novalidate>
+<h2 class="form-signin-heading">Please sign up</h2>
+<div class="form-group" ng-class="{ 'has-error': regForm.email.$touched && regForm.email.$invalid }">
+    <label for="email">Email</label>
+    <input type="email"
+           name="email"
+           id="email"
+           ng-model="registration.email"
+           required="required"
+           class="form-control">
+    <div class="help-block" ng-messages="regForm.email.$error" ng-if="regForm.email.$touched">
+      <p ng-message="required">Email is required</p>
+      <p ng-message="email">This needs to be a valid email</p>
+    </div>
+</div>
+<div class="form-group" ng-class="{ 'has-error': regForm.password.$touched && regForm.password.$invalid }">
+    <label for="password">Password</label>
+    <input type="password"
+           name="password"
+           id="password"
+           ng-model="registration.password"
+           required="required"
+           ng-minlength="8"
+           class="form-control">
+     <div class="help-block" ng-messages="regForm.password.$error" ng-if="regForm.password.$touched">
+        <p ng-message="required">Password is required</p>
+        <p ng-message="minlength">Your password is too short.</p>
+    </div>
+</div>
+<div class="form-group" ng-class="{ 'has-error': regForm.password_confirmation.$touched && regForm.password_confirmation.$invalid }">
+    <label for="password_confirmation">Password confirmation</label>
+    <input type="password"
+           name="password_confirmation"
+           id="password_confirmation"
+           ng-model="registration.password_confirmation"
+           required="required"
+           ng-minlength="8"
+           match="registration.password"
+           class="form-control">
+    <div class="help-block" ng-messages="regForm.password_confirmation.$error" ng-if="regForm.password_confirmation.$touched">
+        <p ng-message="required">Password is required</p>
+        <p ng-message="minlength">Your password is too short.</p>
+        <p ng-message="match">Your password do not match.</p>
+    </div>
+</div>
+  <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+  <div class="btn-divider">or</div>
+  <a class="btn btn-lg btn-primary btn-block" href="/#sign_in">Sign in</a>
+</form>

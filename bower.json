@@ -1,0 +1,32 @@
+{
+  "name": "todo_list_app",
+  "homepage": "https://github.com/alexxty7/todo_list_app",
+  "authors": [
+    "alexxty7 <alexxty7@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-ui-router": "~0.2.18",
+    "angular-validation-match": "^1.7.1",
+    "angular-messages": "^1.5.0",
+    "angular-permission": "^2.0.8",
+    "angular-bootstrap": "^1.1.2",
+    "angular-bootstrap-datetimepicker": "^1.0.1",
+    "ng-sortable": "^1.3.2",
+    "ng-file-upload": "^11.2.3",
+    "ng-token-auth": "^0.0.28",
+    "moment": "^2.11.2",
+    "angular-resource": "^1.5.0"
+  }
+}

@@ -1,0 +1,29 @@
+<div class="project-panel">
+    <div class="project-heading">
+        <div class="list-title">
+            <span>{{task.description}}</span>
+        </div>
+    </div>
+    <div class="comments-list" ng-repeat="comment in task.comments">
+        <p> {{comment.body}}</p>
+        <a href="{{comment.file_attachment.file_attachment.url}}">{{comment.file_attachment.file_attachment.name}}</a>
+        <a href='' class="delete" ng-click="deleteComment(comment)"></a>
+    </div>
+    <div class="add-comment">
+        <form name="commentForm" ng-submit="commentForm.$valid && addComment()" novalidate>
+            <div class="form-group">
+                <label>Comment</label>
+                <textarea class="form-control" ng-model="comment.body" name="note" required>
+                </textarea>
+            <div class="help-block" ng-messages="commentForm.note.$error" ng-if="commentForm.note.$touched">
+                  <p ng-message="required">Comment text is required.</p>
+            </div>
+            </div>
+            <input type="file" ngf-select ng-model="comment.file_attachment" />
+            <button class="btn btn-primary pull-right" type="submit">
+                Add comment
+            </button>
+        </form>
+    </div>
+    <a href="#/" class="btn btn-primary btn-back">Back to TODO</a>
+</div>

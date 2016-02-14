@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.5'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -18,11 +17,17 @@ gem 'devise_token_auth'
 gem 'omniauth', '~> 1.0'
 gem 'omniauth-facebook'
 gem 'cancancan', '~> 1.10'
+gem 'haml'
+gem 'angular_rails_csrf'
+gem 'angular-rails-templates'
+gem 'bootstrap-sass', '~> 3.3.5'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'
   gem "rspec-rails"
   gem "factory_girl_rails"
+  gem "faker"
 end
 
 group :development do
@@ -31,7 +36,6 @@ group :development do
 end
 
 group :test do 
-  gem "faker"
   gem "database_cleaner"
   gem 'shoulda-matchers'
   gem 'capybara'

@@ -1,0 +1,69 @@
+<div class="project-panel" ng-repeat="task_list in task_lists">
+    <div class="project-heading" hover>
+        <div class="list-title">
+            <editablespan class="editable-list" model="task_list.title"  on-ready="editTaskList(task_list)">
+            </editablespan>
+        </div>
+        <div class="control-project">
+            <ul>
+                <li><a href='' class="edit"></a></li>
+                <li><a href='' class="delete" ng-click="deleteTaskList(task_list)"></a></li>
+            </ul>    
+        </div>
+    </div>
+    <div class="create-task-form">
+        <form name="taskForm" ng-submit="taskForm.$valid && addTask(task_list)" novalidate>
+            <div class="create-task input-group">
+                <input type="text" class="form-control" placeholder="Task description" ng-model="task_list.description" required>
+                </input>
+                <div class="input-group-btn">
+                    <button type="submit" class="add-task btn btn-success">Add task</button>
+                </div>
+            </div>       
+        </form> 
+    </div>
+    <ul class="list-group task-list" data-as-sortable="sortListeners" data-ng-model="task_list.tasks" >
+        <li class="list-group-item" ng-class="{completed: task.completed}" ng-repeat="task in task_list.tasks" data-as-sortable-item hover>
+            <div class="task-completed">
+                <input ng-change="toggleTask(task)" ng-model="task.completed" type="checkbox" >
+            </div>
+
+            <div class="task-description" ng-click="alert('hi')" >
+                <editablespan  model="task.description"  on-ready="editTask(task)"  input-class="form-control"   input-type="text">
+                </editablespan>
+                <div class="comments">
+                    <a href="#/tasks/{{task.id}}">Comments</a>
+                </div>
+                <div class="deadline">{{task.deadline | date: 'MMM d, y h:mm a' }}</div>
+            </div>
+                
+
+            <div class="control-task">
+                <a class="sort" data-as-sortable-item-handle href=""></a>
+                <div class="dropdown set-deadline">
+                    <a class="dropdown-toggle deadline-{{task.id}}" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker 
+                        data-ng-model="task.deadline" 
+                        data-on-set-time="setDeadline(task, newDate)" 
+                        data-datetimepicker-config="{ dropdownSelector: '.deadline-{{task.id}}' }">
+                        </datetimepicker>
+                    </ul>
+                </div>
+                <a class="edit" href=""></a>
+                <a class="delete" ng-click="deleteTask(task, task_list)" href=""></a>
+            </div>            
+        </li>
+    </ul>
+</div>
+<div class="create-task_list">
+    <button class="btn btn-lg btn-primary " ng-click="showForm()" >
+        <span class="glyphicon glyphicon-plus"></span>
+    Add TODO List
+</button>  
+</div>
+ 
+
+

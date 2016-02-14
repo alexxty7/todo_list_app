@@ -1,0 +1,40 @@
+<div class="alert alert-danger" role="alert" ng-show="error">
+  {{error}}
+</div>
+<form name="loginForm" class="form-auth" ng-submit="loginForm.$valid && submitLogin(login)" role="form" ng-init="login = {}" novalidate>
+<h2 class="form-signin-heading">Please sign in</h2>
+<div class="form-group" ng-class="{ 'has-error': loginForm.email.$touched && loginForm.email.$invalid }">
+  <label for="inputEmail">Email address</label>
+  <input type="email"
+          name="email"
+          id="inputEmail"
+          ng-model="login.email"
+          required="required"
+          class="form-control"
+          autofocus>
+  <div class="help-block" ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched">
+      <p ng-message="required">Email is required</p>
+      <p ng-message="email">This needs to be a valid email</p>
+  </div>
+</div>
+<div class="form-group" ng-class="{ 'has-error': loginForm.password.$touched && loginForm.password.$invalid }">
+    <label for="inputPassword">Password</label>
+    <input type="password"
+           name="password"
+           id="inputPassword"
+           ng-model="login.password"
+           required="required"
+           ng-minlength="8"
+           class="form-control">
+  <div class="help-block" ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched">
+      <p ng-message="required">Password is required</p>
+      <p ng-message="minlength">Your password is too short.</p>
+  </div>
+</div>
+  <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+   <a class="btn btn-lg btn-primary btn-block" ng-click="authenticate('facebook')">
+    Sign in with Facebook
+  </a>
+  <div class="btn-divider">or</div>
+  <a class="btn btn-lg btn-primary btn-block" href="/#sign_up">Sign up</a>
+</form>

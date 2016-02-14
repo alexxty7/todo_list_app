@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div ng-show="user.id">
+                <a class="btn btn-success pull-right" ng-click='signOut()'>Sign out</a>
+                <% if user_signed_in? %>
+                    <%= current_user.email %>
+                <% end %>
+            </div>
+            <div class="page-header">
+                <h1>Simple todo lists</h1>
+                <h4>From Ruby Garage</h4>
+            </div>
+            <div ui-view></div>
+        </div>
+    </div>
+    <div class="footer row">
+        <div class="container">
+            <p class="text-muted">&copy; Ruby Garage</p>
+        </div>
+    </div>
+</div>

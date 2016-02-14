@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
- 
-  namespace :api do
-    namespace :v1 do
-      resources :task_lists
-      resources :comments
-      resources :tasks do
-        patch :sort, on: :member      
-      end
-    end
+  root 'home#index'
+
+  mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+      sessions: 'overrides/sessions'
+    }
+
+  resources :task_lists, defaults: { format: :json }
+  resources :comments, defaults: { format: :json }
+  resources :tasks, defaults: { format: :json } do
+    patch :sort, on: :member      
   end
 end
