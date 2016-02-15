@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :load_task, except: :create
-  # before_action :authenticate_user!
-  # authorize_resource
+  before_action :authenticate_user!
+  authorize_resource
   
   def show
     respond_with @task

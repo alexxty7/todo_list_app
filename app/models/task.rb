@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :task_list
-  has_many :comments
+  has_many :comments, dependent: :destroy
   
   validates :description, presence: true
   validates :task_list, presence: true

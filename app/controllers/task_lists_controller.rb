@@ -1,16 +1,14 @@
 class TaskListsController < ApplicationController
   before_action :load_task_list, only: [:destroy, :update]
-  # before_action :authenticate_user!
-  # authorize_resource
+  before_action :authenticate_user!
+  authorize_resource
   
   def index
-    # respond_with current_user.task_lists
-    respond_with TaskList.all
+    respond_with current_user.task_lists
   end
 
   def create
-    # @task_list = current_user.task_lists.create(task_list_params)
-    @task_list = TaskList.create(task_list_params)
+    @task_list = current_user.task_lists.create(task_list_params)
     respond_with @task_list
   end
 

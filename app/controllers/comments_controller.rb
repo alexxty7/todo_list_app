@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
   before_action :process_params, only: :create
   before_action :load_comment, only: :destroy
-  # before_action :authenticate_user!
-  # authorize_resource
+  before_action :authenticate_user!
+  authorize_resource
   
   def create
     @comment = Comment.create(comment_params)
