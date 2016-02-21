@@ -25,8 +25,8 @@ angular.module('todoAngular')
       controller: 'ModalCtrl',
       scope: $scope,
       resolve: {
-        userForm: function () {
-            return $scope.userForm;
+        listForm: function () {
+            return $scope.listForm;
           }
         }
       });
@@ -80,7 +80,7 @@ angular.module('todoAngular')
       var id, position;
       task = event.source.itemScope.task;
       position = event.dest.index;
-      Task.sort({id: task.id}, {position: position});
+      Task.update({id: task.id}, {position: position});
     }
   };
 

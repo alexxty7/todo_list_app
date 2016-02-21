@@ -13,17 +13,16 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update(task_params)
+    if params[:position]
+      @task.set_list_position(params[:position].to_i + 1)
+    else
+      @task.update(task_params)
+    end
     respond_with @task
   end
 
   def destroy
     respond_with @task.destroy
-  end
-
-  def sort
-    @task.set_list_position(params[:position].to_i + 1)
-    respond_with @task
   end
 
   private

@@ -22,18 +22,18 @@ RSpec.describe TasksController, type: :controller do
 
       %w(id description completed position deadline).each do |attr|
         it "contains #{attr}" do
-          expect(response.body).to be_json_eql(task.send(attr.to_sym).to_json).at_path("task/#{attr}")
+          expect(response.body).to be_json_eql(task.send(attr.to_sym).to_json).at_path("#{attr}")
         end
       end
 
       context 'comments' do
         it 'included in task object' do
-          expect(response.body).to have_json_size(1).at_path('task/comments')
+          expect(response.body).to have_json_size(1).at_path('comments')
         end
         
         %w(id body file_attachment).each do |attr|
           it "contains #{attr}" do
-            expect(response.body).to be_json_eql(comment.send(attr.to_sym).to_json).at_path("task/comments/0/#{attr}")
+            expect(response.body).to be_json_eql(comment.send(attr.to_sym).to_json).at_path("comments/0/#{attr}")
           end
         end
       end
@@ -111,6 +111,12 @@ RSpec.describe TasksController, type: :controller do
               patch :update, id: other_task, task: {description: "updated desc"}, format: :json 
             }.to raise_error(CanCan::AccessDenied)
         end
+
+        it 'set task position' do
+          patch :update, id: task, task: {position: 2}, format: :json
+          task.reload
+          expect(task.position).to_not eq(1)
+        end
       end
 
       context 'with invalid attributes' do
@@ -169,32 +175,4 @@ RSpec.describe TasksController, type: :controller do
     end
   end
 
-  describe 'PATCH #sort' do
-
-    context "authenticated user" do
-      login_user
-
-      it 'set task position' do
-        patch :sort, id: task, position: 2, format: :json
-        task.reload
-        expect(task.position).to_not eq(1)
-      end
-
-      it "return 204 OK" do
-        patch :sort, id: task, position: 2, format: :json
-        expect(response).to be_success
-      end
-      it "return AccessDenied when trying to sort task of another user" do
-        expect { 
-            patch :sort, id: other_task, position: 2, format: :json 
-          }.to raise_error(CanCan::AccessDenied)
-      end
-    end
-
-    it_behaves_like "authenticable" do
-      before do
-        patch :sort, id: other_task, position: 2, format: :json
-      end
-    end
-  end
 end

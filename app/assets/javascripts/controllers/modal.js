@@ -2,15 +2,15 @@ angular.module('todoAngular')
 .controller('ModalCtrl', [
   '$scope',
   '$uibModalInstance',
-  'userForm',
+  'listForm',
   'TaskList',
-  function($scope, $uibModalInstance, userForm, TaskList){
+  function($scope, $uibModalInstance, listForm, TaskList){
 
     $scope.form = {}
     
     $scope.submitForm = function () {
       
-        if ($scope.form.userForm.$valid) {
+        if ($scope.form.listForm.$valid) {
             task_list = new TaskList({title: $scope.name});
             task_list.$save(function(data){
                $uibModalInstance.close(data);

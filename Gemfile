@@ -41,7 +41,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'json_spec'
-  gem "selenium-webdriver"
+  gem "capybara-webkit"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

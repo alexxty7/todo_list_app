@@ -20,10 +20,8 @@
 //= require angular-messages
 //= require angular-validation-match/dist/angular-validation-match
 //= require angular-bootstrap-datetimepicker/src/js/datetimepicker
-//= require angular-bootstrap-datetimepicker/src/js/datetimepicker.templates
 //= require ng-token-auth/dist/ng-token-auth
 //= require angular-ui-router
-//= require angular-permission
 //= require angular-rails-templates
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require ng-sortable/dist/ng-sortable

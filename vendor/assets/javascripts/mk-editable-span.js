@@ -3,7 +3,7 @@ var mod = angular.module('mk.editablespan', []);
 mod.directive('editablespan', function() {
   return {
     restrict: 'E',
-    template: '<div class="editable-span"><span ng-hide="editing" ng-class="spanClass">{{text}}</span><form ng-show="editing"><input type="{{getInputType()}}" ng-class="inputClass"></form><div>',
+    template: '<div class="editable-span"><span ng-hide="editing" ng-class="spanClass">{{text}}</span><form ng-show="editing"><input type="{{getInputType()}}" ng-class="inputClass" name="title" class="title"></form><div>',
     scope: {
       text: '=model',
       onReady: '&',

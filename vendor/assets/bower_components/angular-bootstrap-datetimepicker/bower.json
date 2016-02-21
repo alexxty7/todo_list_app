@@ -30,15 +30,5 @@
     "angular-mocks": "^1.4.7",
     "bootstrap": "^3.3.5",
     "jquery": "^2.1.4"
-  },
-  "_release": "0.3.15",
-  "_resolution": {
-    "type": "version",
-    "tag": "0.3.15",
-    "commit": "caa152b987710a00aed8ce5329c9e33a8ce74ff8"
-  },
-  "_source": "git://github.com/dalelotts/angular-bootstrap-datetimepicker.git",
-  "_target": "0.3.15",
-  "_originalSource": "angular-bootstrap-datetimepicker-github",
-  "_direct": true
+  }
 }

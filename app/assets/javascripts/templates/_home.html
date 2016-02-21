@@ -14,7 +14,7 @@
     <div class="create-task-form">
         <form name="taskForm" ng-submit="taskForm.$valid && addTask(task_list)" novalidate>
             <div class="create-task input-group">
-                <input type="text" class="form-control" placeholder="Task description" ng-model="task_list.description" required>
+                <input type="text" name="task_title" class="form-control" placeholder="Task description" ng-model="task_list.description" required>
                 </input>
                 <div class="input-group-btn">
                     <button type="submit" class="add-task btn btn-success">Add task</button>
@@ -37,7 +37,6 @@
                 <div class="deadline">{{task.deadline | date: 'MMM d, y h:mm a' }}</div>
             </div>
                 
-
             <div class="control-task">
                 <a class="sort" data-as-sortable-item-handle href=""></a>
                 <div class="dropdown set-deadline">
@@ -45,11 +44,7 @@
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker 
-                        data-ng-model="task.deadline" 
-                        data-on-set-time="setDeadline(task, newDate)" 
-                        data-datetimepicker-config="{ dropdownSelector: '.deadline-{{task.id}}' }">
-                        </datetimepicker>
+                        <datetimepicker data-ng-model="task.deadline" data-on-set-time="setDeadline(task, newDate)" data-datetimepicker-config='{ dropdownSelector: ".deadline-{{task.id}}" }'></datetimepicker>
                     </ul>
                 </div>
                 <a class="edit" href=""></a>
