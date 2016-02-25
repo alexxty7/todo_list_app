@@ -4,7 +4,7 @@ class TaskListsController < ApplicationController
   authorize_resource
   
   def index
-    respond_with current_user.task_lists
+    respond_with current_user.task_lists.includes(tasks: :comments)
   end
 
   def create

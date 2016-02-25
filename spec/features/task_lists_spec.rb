@@ -3,8 +3,12 @@ require_relative 'features_helper'
 feature 'Todo list', js: true do
   given(:user) { create(:user) }
 
+  background do 
+    sign_in(user) 
+    create(:task_list, user: user)
+  end
+
   scenario 'User can create todo_list' do
-    sign_in(user)
 
     click_button('Add TODO List')
 
@@ -17,8 +21,6 @@ feature 'Todo list', js: true do
   end
 
   scenario 'User can update todo_list title' do
-    sign_in(user)
-    list = create(:task_list, user: user)
 
     within '.project-heading' do
       find('.control-project').trigger(:mouseover)
@@ -30,8 +32,6 @@ feature 'Todo list', js: true do
   end
 
   scenario 'User can delete todo_list' do
-    sign_in(user)
-    list = create(:task_list, user: user)
 
     within '.project-heading' do
       find('.control-project').trigger(:mouseover)

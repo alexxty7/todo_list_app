@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   end
 
   def load_task
-    @task = Task.find(params[:id])
+    @task = Task.includes(:comments).find(params[:id])
   end
 
 end
