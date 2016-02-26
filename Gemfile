@@ -23,6 +23,8 @@ gem 'angular-rails-templates'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'figaro'
 
+gem 'unicorn', group: :production
+
 group :development, :test do
   gem 'byebug'
   gem "rspec-rails"
