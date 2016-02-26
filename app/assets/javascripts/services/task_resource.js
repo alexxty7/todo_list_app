@@ -1,5 +1,6 @@
-angular.module('todoAngular').factory('Task', function($resource) {
+angular.module('todoAngular')
+.factory('Task', ['$resource', function($resource) {
   return $resource('/tasks/:id', { id: '@id' }, {
     update: { method: 'PUT' }
   }); 
-});
+}]);
