@@ -3,7 +3,6 @@ The SQL part
 Given tables:
 * tasks (id, name, status, project_id)
 * projects (id, name)
-***
 
 1.get all statuses, not repeating, alphabetically ordered
 
